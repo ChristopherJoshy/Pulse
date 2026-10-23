@@ -1,125 +1,75 @@
-# CampusPulse — Campus Opportunities & KTU Activity Points Platform
+<div align="center">
+  <img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:042f2e,35:0f766e,70:14b8a6,100:facc15&height=190&section=header&text=Pulse&fontSize=68&fontColor=ffffff&animation=twinkling&fontAlignY=36&desc=Campus%20events%20from%20discovery%20to%20verified%20points.&descAlignY=58&descSize=16" alt="Pulse animated header" />
 
-> **Stack Wars 24-Hour Solo Hackathon Entry**
-> Theme: *Reimagine the Campus*
+  <p>
+    <img src="https://img.shields.io/badge/Client-React%20%2B%20Vite-61DAFB?style=for-the-badge&logo=react&logoColor=111827" alt="React and Vite" />
+    <img src="https://img.shields.io/badge/API-Express%20%2B%20TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="Express and TypeScript" />
+    <img src="https://img.shields.io/badge/Data-MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB" />
+    <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-FDE68A?style=for-the-badge" alt="MIT License" /></a>
+  </p>
+</div>
 
-CampusPulse is a full-stack platform designed to help engineering students discover internships, technical hackathons, workshops, fests, and social initiatives that count toward mandatory **KTU Activity Points** graduation requirements, while automating the entire lifecycle from discovery to point-crediting.
+## 🎓 What it does
 
----
+Pulse is a campus opportunity and activity-points platform prototype. Students browse events, register, and present a QR code for attendance; organizers and advisors have separate views for verification and approval. The backend records events, registrations, notifications, discussions, and points-ledger entries.
 
-## 🚀 The End-to-End Lifecycle Flow
+<p align="center"><img src="copetitions%20%20data/comp1.jpeg" width="46%" alt="Example campus event poster" /></p>
 
-```
-Discover (Poster Feed) ➔ Register ➔ Verified Attendance (QR Scan) ➔ Teacher Approval ➔ Points Credited
-```
+## 🔄 Event lifecycle
 
----
-
-## 🌟 Key Features & Role Breakdown
-
-### 1. Signature Discovery Feed (Student Showcase)
-- **TikTok/Reels-style vertical poster feed** featuring full-screen visual event posters.
-- Keyboard navigation (Up/Down arrow keys) or touch scrolling.
-- Instant 1-click event slot registration & QR pass generation.
-- Real-time KTU Activity Group badging:
-  - **Group I**: Technical / Seminars / Workshops
-  - **Group II**: NSS / Sports / Leadership Initiatives
-  - **Group III**: Cultural / Arts / Competitions
-
-### 2. Student Dashboard
-- Visual progress tracking toward the mandatory 120 KTU Activity Points graduation minimum.
-- Progress bars broken down across Group I, Group II, and Group III.
-- Registered event pass history with 1-click QR code display.
-
-### 3. Organizer Console (Clubs, Depts & Cells)
-- Opportunity creator panel to post new campus posters with custom point values, registration caps, and venue details.
-- Integrated gate scanner UI to scan student QR passes at the door.
-- "Mark Completed" trigger that automatically forwards verified student gate scans to the Staff Advisor queue.
-
-### 4. Staff Advisor / HOD Queue
-- 1-Click approval queue for pending point requests from completed events.
-- Automatic credit to student ledgers upon approval (with celebratory confetti feedback).
-- Student roster view tracking class progress toward degree requirements.
-
----
-
-## 🛠️ Tech Stack & Architecture
-
-- **Runtime & Package Manager**: [Bun](https://bun.sh)
-- **Frontend**: React 18, TypeScript, Vite, Tailwind CSS, Framer Motion, Lucide Icons, `qrcode.react`
-- **Backend**: Express.js, TypeScript, Mongoose (MongoDB ODM), CORS
-- **Database**: MongoDB
-
----
-
-## 📁 Project Structure
-
-```
-Stack Wars/
-├── README.md
-├── code-wiki.md
-├── backend/
-│   ├── src/
-│   │   ├── config/        # MongoDB connection
-│   │   ├── controllers/   # Auth, Event, Registration, Teacher logic
-│   │   ├── models/        # User, Event, Registration, PointsLedger schemas
-│   │   ├── routes/        # Express REST API routes
-│   │   ├── seed/          # Initial seed script
-│   │   └── server.ts      # Server entry point
-│   ├── package.json
-│   └── tsconfig.json
-└── frontend/
-    ├── src/
-    │   ├── components/    # PosterFeed, Navbar, Modals
-    │   ├── context/       # Auth & Role Context
-    │   ├── pages/         # Student, Organizer, Teacher Dashboards
-    │   ├── services/      # REST API client
-    │   ├── types/         # TS interfaces
-    │   ├── App.tsx
-    │   └── main.tsx
-    ├── package.json
-    ├── tailwind.config.js
-    └── vite.config.ts
+```mermaid
+flowchart LR
+  A[Organizer posts event] --> B[Student discovers and registers]
+  B --> C[QR attendance check]
+  C --> D[Advisor review]
+  D --> E[Points ledger update]
 ```
 
----
+## 🧰 Stack
 
-## ⚡ Quick Start & Setup Instructions
+| Layer | Tools |
+|---|---|
+| Frontend | React 18, Vite, TypeScript, Tailwind, Framer Motion |
+| API | Express, TypeScript, Bun scripts |
+| Database | MongoDB/Mongoose |
+| QR and UI | `html5-qrcode`, `qrcode.react`, Lucide |
+| Deploy config | `render.json` |
 
-### Prerequisites
-- [Bun](https://bun.sh) installed (`bun --version`)
-- MongoDB running locally (`mongodb://127.0.0.1:27017`) or a MongoDB Atlas connection string.
+## 🚀 Run locally
 
-### 1. Backend Setup
+Start the backend:
+
 ```bash
-cd backend
+git clone https://github.com/ChristopherJoshy/pulse.git
+cd pulse/backend
 bun install
+Copy-Item .env.example .env  # PowerShell; use cp on macOS/Linux
 bun run dev
 ```
-*Backend runs at `http://localhost:5000` and automatically seeds initial demo profiles.*
 
-### 2. Frontend Setup
-Open a new terminal window:
+Start the frontend separately:
+
 ```bash
-cd frontend
-bun install
-bun run dev
+cd pulse/frontend
+npm install
+npm run dev
 ```
-*Frontend runs at `http://localhost:3000`.*
 
----
+Configure MongoDB and the frontend API URL locally. The repository includes seeded profiles and example event material.
 
-## 🔑 Authentication Architecture Note
+## 🗂️ Layout
 
-To maximize evaluator efficiency during hackathon review, CampusPulse utilizes a **Frictionless Demo Role System**:
-- No complex password/email verification is required.
-- Pre-loaded profiles (1 Student, 1 Organizer, 1 Advisor) are selectable in 1 click.
-- Evaluators can create custom profiles dynamically via the "New Profile" button.
+```text
+frontend/             student, organizer and advisor screens
+backend/src/          Express routes, controllers and MongoDB models
+copetitions  data/    sample event poster assets
+code-wiki.md          implementation notes
+```
 
----
+## ⚠️ Authentication is demo-only
 
-## ✂️ Scope Cuts & Future Roadmap
+The current UI intentionally allows role switching and profile creation for demonstration. The backend endpoints load seeded profiles and create profiles; this is **not production authentication or authorization**. Do not deploy this build with real student records, personal data, or activity-point decisions until authentication, server-side role checks, and audit controls are implemented and reviewed.
 
-1. **Simplified Points Engine**: Events carry flat point values assigned by organizers. KTU's level-based caps and tier multipliers are framed for future release.
-2. **In-App Queue vs SMS Notifications**: Advisor notification is managed via an in-app queue rather than external SMS/Email APIs.
-3. **Cryptographic QR Validation**: QR tokens use unique registration strings optimized for demo performance.
+## 📄 License
+
+MIT. See [`LICENSE`](LICENSE).
