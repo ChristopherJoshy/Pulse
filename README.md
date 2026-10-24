@@ -40,7 +40,7 @@ flowchart LR
 Start the backend:
 
 ```bash
-git clone https://github.com/ChristopherJoshy/pulse.git
+git clone https://github.com/ChristopherJoshy/Pulse.git
 cd pulse/backend
 bun install
 Copy-Item .env.example .env  # PowerShell; use cp on macOS/Linux
